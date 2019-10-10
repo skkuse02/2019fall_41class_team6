@@ -3,7 +3,7 @@
 
 ## Description
 
-###Shoppick(#pick) is an application that has three major features.
+### Shoppick(#pick) is an application that has three major features.
 
 1. Personalizing style info and recommending of on-line shops
 2. Giving a real-time feedback and finding the exact or similar clothes based on the users' photos
