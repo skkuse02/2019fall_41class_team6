@@ -24,7 +24,7 @@
 1. [Deep Fashion](http://mmlab.ie.cuhk.edu.hk/projects/DeepFashion.html) (Z.Liu, DeepFashion: Powering Robust Clothes Recognition and Retrieval
 with Rich Annotations. In CVPR, 2016)
 
-2. [FashionNET](https://arxiv.org/abs/1810.02443)(FashionNet: Personalized Outfit Recommendation with Deep Neural Network
+2. [FashionNET](https://arxiv.org/abs/1810.02443) (Tong He, FashionNet: Personalized Outfit Recommendation with Deep Neural Network
 , 2018)
 
 
