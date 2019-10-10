@@ -1,22 +1,13 @@
-#pick(shoppick)
+#2019-1 Software Engineering Class 41 Team 5 Project
 ===============
-Members
----------------
-# Back-End
 
-## Machine-learning
+#Description
 
-[Seunghoon Lee](https://github.com/SeungHoon00)
 
-## SQL & DB
+#Members
 
-[Misael](https://github.com/Misaeljzg)
-
-***
-
-# Front-End
-
-## Android
-
-[½ÅÇöÁö](https://github.com/guswl98)
-[±èÈñ¼º](https://github.com/khsung)
+* [Hyeonji Shin](https://github.com/guswl98) : Android programming
+* [Huiseong Kim](https://github.com/khsung) : Android programming
+* [Seunghoon Lee](https://github.com/SeungHoon00) : Machine learning
+* [Misael Zapata](https://github.com/Misaeljzg) : SQL & Database
+* [Dasan Jeong] : Documentation
