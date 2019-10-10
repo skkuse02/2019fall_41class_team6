@@ -11,7 +11,7 @@
 
 ## Members
 
-* [Hyeonji Shin](https://github.com/guswl98) : Android programming
+* [Hyunji Shin](https://github.com/guswl98) : Android programming
 * [Heesung Kim](https://github.com/khsung) : Android programming
 * [Seunghoon Lee](https://github.com/SeungHoon00) : Deep learning
 * [Misael Zapata](https://github.com/Misaeljzg) : SQL & Database
@@ -24,7 +24,8 @@
 1. [Deep Fashion](http://mmlab.ie.cuhk.edu.hk/projects/DeepFashion.html) (Z.Liu, DeepFashion: Powering Robust Clothes Recognition and Retrieval
 with Rich Annotations. In CVPR, 2016)
 
-2. [FashionNET](https://arxiv.org/abs/1810.02443. 2018)
+2. [FashionNET](https://arxiv.org/abs/1810.02443)(FashionNet: Personalized Outfit Recommendation with Deep Neural Network
+, 2018)
 
 
 
