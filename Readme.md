@@ -1,4 +1,4 @@
-2019-1 Software Engineering Class 41 Team 5 Project(Shoppick)
+2019-2 Software Engineering Class 42 Team 6 Project(Shoppick)
 ===============
 
 ## Description
