@@ -2,11 +2,21 @@
 ===============
 Members
 ---------------
-#Back-End
+# Back-End
 
->Machine-learning
-ÀÌ½ÂÈÆ @Seunghoon00
->SQL & DB
-Misael @Misaeljzg
+## Machine-learning
 
-#Front-End
+[Seunghoon Lee](https://github.com/SeungHoon00)
+
+## SQL & DB
+
+[Misael](https://github.com/Misaeljzg)
+
+***
+
+# Front-End
+
+## Android
+
+[½ÅÇöÁö](https://github.com/guswl98)
+[±èÈñ¼º](https://github.com/khsung)
