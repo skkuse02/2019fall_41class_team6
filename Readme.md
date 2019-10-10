@@ -1,10 +1,10 @@
-#2019-1 Software Engineering Class 41 Team 5 Project
+2019-1 Software Engineering Class 41 Team 5 Project
 ===============
 
-#Description
+# Description
 
 
-#Members
+# Members
 
 * [Hyeonji Shin](https://github.com/guswl98) : Android programming
 * [Huiseong Kim](https://github.com/khsung) : Android programming
