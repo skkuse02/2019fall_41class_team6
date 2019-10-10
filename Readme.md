@@ -1,4 +1,4 @@
-2019-2 Software Engineering Class 42 Team 6 Project(Shoppick)
+2019-2 Software Engineering Class 41 Team 6 Project(Shoppick)
 ===============
 
 ## Description
@@ -16,3 +16,16 @@
 * [Seunghoon Lee](https://github.com/SeungHoon00) : Deep learning
 * [Misael Zapata](https://github.com/Misaeljzg) : SQL & Database
 * [Dasan Jeong](https://github.com) : Documentation
+
+## User Interfaces
+
+## Implemented Techniques
+
+1. [Deep Fashion](http://mmlab.ie.cuhk.edu.hk/projects/DeepFashion.html) (Z.Liu, DeepFashion: Powering Robust Clothes Recognition and Retrieval
+with Rich Annotations. In CVPR, 2016)
+
+2. [FashionNET](https://arxiv.org/abs/1810.02443. 2018)
+
+
+
+
