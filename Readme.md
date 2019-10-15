@@ -11,7 +11,7 @@
 
 ## Members
 
-* [Hyunji Shin](https://github.com/guswl98) : Android programming
+* [Hyunjee Shin](https://github.com/guswl98) : Android programming
 * [Heesung Kim](https://github.com/khsung) : Android programming
 * [Seunghoon Lee](https://seunghoon00.github.io/) : Deep learning
 * [Misael Zapata](https://github.com/Misaeljzg) : SQL & Database
