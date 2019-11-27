@@ -3,6 +3,7 @@ package com.example.shopick;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
@@ -17,6 +18,7 @@ import android.hardware.camera2.TotalCaptureResult;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.Image;
 import android.media.ImageReader;
+import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -45,6 +47,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Semaphore;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class PreView extends Thread {
     private final static String TAG = "PreView : ";
@@ -324,12 +328,14 @@ public class PreView extends Thread {
             final Handler delayPreview = new Handler();
 
             final CameraCaptureSession.CaptureCallback captureListener = new CameraCaptureSession.CaptureCallback() {
+                Context context = getApplicationContext();
                 @Override
                 public void onCaptureCompleted(CameraCaptureSession session,
                                                CaptureRequest request, TotalCaptureResult result) {
                     super.onCaptureCompleted(session, request, result);
                     Toast.makeText(mContext, "Saved:" + file, Toast.LENGTH_SHORT).show();
                     delayPreview.postDelayed(mDelayPreviewRunnable, 1000);
+                    context.sendBroadcast(new Intent( Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)) );
 //                    startPreview();
                 }
 
