@@ -4,7 +4,9 @@ package com.example.shopick;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +27,10 @@ public class LoginActivity extends AppCompatActivity {            //로그인 �
     EditText pw;
     Button login;
     TextView signup;
+
+    SharedPreferences loginPref;
+
+    String shakey;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme_NoActionBar);
@@ -33,6 +39,18 @@ public class LoginActivity extends AppCompatActivity {            //로그인 �
 
         id = findViewById(R.id.ID);
         pw=findViewById(R.id.password);
+
+        final Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Context context = this;
+        loginPref = context.getSharedPreferences( "login", Context.MODE_PRIVATE);
+
+
+        final SharedPreferences.Editor editor = loginPref.edit();
+        final String defaultValue = loginPref.getString("login", null);
+        if (defaultValue != null) {
+            startActivity(intent);
+            finish();
+        };
 
         login = findViewById(R.id.Login);
         login.setOnClickListener(new View.OnClickListener() {
@@ -54,17 +72,13 @@ public class LoginActivity extends AppCompatActivity {            //로그인 �
                     @Override
                     public void onResponse(String response) {
                         try{
-                            /*int jsonStart = response.indexOf("{");
-                            int jsonEnd = response.lastIndexOf("}");
-
-                            if (jsonStart >= 0 && jsonEnd >= 0 && jsonEnd > jsonStart) {
-                                response = response.substring(jsonStart, jsonEnd + 1);
-                            } else {
-                                // deal with the absence of JSON content here
-                            }*/
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
                             if(success){
+                                shakey = id.getText().toString();
+                                Log.d("shakey", shakey);
+                                editor.putString("login", shakey);
+                                editor.commit();
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 LoginActivity.this.startActivity(intent);
                                 finish();
