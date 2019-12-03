@@ -8,7 +8,7 @@
 
     <uses-feature
         android:name="android.hardware.camera"
-        android:required="false"></uses-feature>
+        android:required="false" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -19,7 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SignupActivity"></activity>
+        <activity android:name=".MypageActivity"></activity>
+        <activity android:name=".SignupActivity" />
         <activity android:name=".PreViewActivity" />
         <activity android:name=".RecommendActivity" />
         <activity android:name=".LoginActivity" />
