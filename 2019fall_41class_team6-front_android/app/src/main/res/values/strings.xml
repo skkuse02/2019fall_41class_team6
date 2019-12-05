@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Shopick</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="facebook_app_id">798384740597466</string>
+    <string name="fb_login_protocol_scheme">fb798384740597466</string>
+
+</resources>
