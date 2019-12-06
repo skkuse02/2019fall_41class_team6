@@ -13,6 +13,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.media.Image;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -20,7 +21,9 @@ import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewDebug;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -141,12 +144,12 @@ public class MainActivity extends AppCompatActivity {                  //카메�
                         if(!tag2_str.equals("-1")){
                             tag2.setText("#"+tag2_str);
                             tag2.setVisibility(View.VISIBLE);
-                            checkTag[1]=true;
+
                         }
                         if(!tag3_str.equals("-1")){
                             tag3.setText("#"+tag3_str);
                             tag3.setVisibility(View.VISIBLE);
-                            checkTag[2]=true;
+
                         }
                     }
                     else
@@ -172,6 +175,9 @@ public class MainActivity extends AppCompatActivity {                  //카메�
         tag1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                checkTag[0]=true;
+                checkTag[1]=false;
+                checkTag[2]=false;
                 getImageURL(0);
                 adapter.updateContent(imgURL);
                 Log.d("IMG LENGTHHHHHH",Integer.toString(imgURL.size()));
@@ -180,7 +186,9 @@ public class MainActivity extends AppCompatActivity {                  //카메�
         tag2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                checkTag[1]=true;
+                checkTag[0]=false;
+                checkTag[2]=false;
                 getImageURL(1);
                 adapter.updateContent(imgURL);
                 Log.d("IMG LENGTHHHHHH",Integer.toString(imgURL.size()));
@@ -189,11 +197,60 @@ public class MainActivity extends AppCompatActivity {                  //카메�
         tag3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                checkTag[2]=true;
+                checkTag[0]=false;
+                checkTag[1]=false;
                 getImageURL(2);
                 adapter.updateContent(imgURL);
                 Log.d("IMG LENGTHHHHHH",Integer.toString(imgURL.size()));
             }
         });
+
+        gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            String storeUrl;
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                String clothe;
+                if(checkTag[0]==true){
+                    clothe=tag1.getText().toString().substring(1)+Integer.toString(position);
+                }else if(checkTag[1]==true){
+                    clothe=tag2.getText().toString().substring(1)+Integer.toString(position);
+                }else{
+                    clothe=tag3.getText().toString().substring(1)+Integer.toString(position);
+                }
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try{
+                            JSONObject jsonResponse = new JSONObject(response);
+                            Log.d("내용을 알아보자",jsonResponse.toString());
+                            boolean success = jsonResponse.getBoolean("success");
+                            if(success){
+                                storeUrl=jsonResponse.getString("URL");
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(storeUrl));
+                                startActivity(intent);
+                                Log.d("가게 URL 확인",storeUrl);
+                            }
+                            else
+                            {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                                AlertDialog dialog=builder.setMessage("URL 가져오기 실패").setPositiveButton("OK",null).create();
+                                dialog.show();
+                            }
+                        }
+                        catch(Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                GoToStoreRequest gotoStoreRequest = new GoToStoreRequest(clothe,responseListener);
+                RequestQueue queue3 = Volley.newRequestQueue(MainActivity.this);
+                queue3.add(gotoStoreRequest);
+
+            }
+
+        });
+
 
     }
     /*private class YourTask extends AsyncTask<String, Void, String>
@@ -251,6 +308,7 @@ public class MainActivity extends AppCompatActivity {                  //카메�
         RequestQueue queue2 = Volley.newRequestQueue(MainActivity.this);
         queue2.add(getImageRequest);
     }
+
 
 }
 class MyAdapter extends BaseAdapter {
