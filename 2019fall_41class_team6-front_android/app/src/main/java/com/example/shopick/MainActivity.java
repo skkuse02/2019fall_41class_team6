@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -53,6 +54,8 @@ import java.util.Iterator;
 public class MainActivity extends AppCompatActivity {                  //카메라, recommend 버튼이 있는 화면
 
     private Button button;
+    Button search_btn;
+    EditText search_content;
     boolean[] checkTag=new boolean[3];
 
     TextView tag1, tag2, tag3;
@@ -61,7 +64,6 @@ public class MainActivity extends AppCompatActivity {                  //카메�
     ArrayList<String> imgURL = new ArrayList<String>();
     GridView gv;
     MyAdapter adapter;    // 데이터
-    int width, height;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,28 +73,34 @@ public class MainActivity extends AppCompatActivity {                  //카메�
         tag1=findViewById(R.id.tag1);
         tag2=findViewById(R.id.tag2);
         tag3=findViewById(R.id.tag3);
+        search_content=findViewById(R.id.search);
+        search_btn=findViewById(R.id.button2);
+        image=findViewById(R.id.imageView);
+        gv= findViewById(R.id.gridView);
+        Button fbLogoutButton = findViewById(R.id.mypage);
+        button = findViewById(R.id.cameraBtn);
+
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
         int width;
         width = size.x;
-        image=findViewById(R.id.imageView);
-        gv= findViewById(R.id.gridView);
+
         adapter = new MyAdapter (getApplicationContext(),R.layout.imagegridview,imgURL, width);
         gv.setAdapter(adapter);
         SharedPreferences loginPref = getSharedPreferences("login", Activity.MODE_PRIVATE);
         final String userID = loginPref.getString("login", "0");
         Log.d("IDIDIDID", userID);
 
-        button = findViewById(R.id.cameraBtn);                     //카메라 버튼
+        //카메라 버튼
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent loginIntent = new Intent(MainActivity.this, CameraActivity.class);
+                Intent loginIntent = new Intent(MainActivity.this, PreViewActivity.class);
                 startActivity(loginIntent);
             }
         });
-        Button fbLogoutButton = findViewById(R.id.mypage);
+
         fbLogoutButton.setOnClickListener(new View.OnClickListener() {           //로그인화면으로 가면서 로그아웃하는 버튼  임시로만들어놓음
             @Override
             public void onClick(View view) {
@@ -101,7 +109,16 @@ public class MainActivity extends AppCompatActivity {                  //카메�
             }
         });
 
-
+        search_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String searchContent=search_content.getText().toString();
+                Log.d("넘겨지는 애가 뭔지 확인",searchContent);
+                Intent searchIntent = new Intent(MainActivity.this, SearchActivity.class);
+                searchIntent.putExtra("searchContent",searchContent);
+                startActivity(searchIntent);
+            }
+        });
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -135,7 +152,7 @@ public class MainActivity extends AppCompatActivity {                  //카메�
                     else
                     {
                         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                        AlertDialog dialog=builder.setMessage("Fail to get tag").setPositiveButton("OK",null).create();
+                        AlertDialog dialog=builder.setMessage("There's no tag").setPositiveButton("OK",null).create();
                         dialog.show();
                     }
                 }
