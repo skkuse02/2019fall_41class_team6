@@ -147,6 +147,7 @@ public class SignupActivity extends AppCompatActivity {
                         try{
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
+                            Log.d("SinupActivity",jsonResponse.toString());
                             if(success){
                                 Intent result = new Intent();
                                 Toast.makeText(SignupActivity.this, "Signup success!", Toast.LENGTH_SHORT).show();
@@ -157,9 +158,16 @@ public class SignupActivity extends AppCompatActivity {
                             }
                             else
                             {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
-                                AlertDialog dialog=builder.setMessage("Fail to Signup").setPositiveButton("OK",null).create();
-                                dialog.show();
+                                boolean exist = jsonResponse.getBoolean("exist");
+                                if(exist){
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
+                                    AlertDialog dialog=builder.setMessage("Already existed ID. Choose another one.").setPositiveButton("OK",null).create();
+                                    dialog.show();
+                                }else {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
+                                    AlertDialog dialog = builder.setMessage("Fail to Signup").setPositiveButton("OK", null).create();
+                                    dialog.show();
+                                }
                             }
                         }
                         catch(Exception e)
