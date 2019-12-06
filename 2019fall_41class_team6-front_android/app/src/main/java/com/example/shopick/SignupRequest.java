@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SignupRequest extends StringRequest{
-    final static private String URL = "http://khsung0.dothome.co.kr/test/Signup.php";
+    final static private String URL = "http://115.145.170.186/signUp.php";
     private Map<String, String> parameters;
 
     public SignupRequest(String userName, String userID, String userPW, String instaID, String instaPW, Response.Listener<String> listener) {
