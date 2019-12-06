@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GetImageRequest extends StringRequest {
-    final static private String URL = "http://khsung0.dothome.co.kr/test/GetImage.php";
+    final static private String URL = "http://115.145.170.186/GetImage.php";
     private Map<String, String> parameters;
 
     public GetImageRequest(String tag, Response.Listener<String> listener) {
