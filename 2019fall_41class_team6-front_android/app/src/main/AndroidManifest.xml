@@ -21,7 +21,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".MypageActivity"></activity>
         <activity android:name=".SignupActivity" />
-        <activity android:name=".PreViewActivity" />
+        <activity android:name=".CameraActivity" />
         <activity android:name=".RecommendActivity" />
         <activity android:name=".LoginActivity" />
         <activity
