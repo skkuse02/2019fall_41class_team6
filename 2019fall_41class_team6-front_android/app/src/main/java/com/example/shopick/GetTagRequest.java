@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GetTagRequest extends StringRequest {
-    final static private String URL = "http://khsung0.dothome.co.kr/test/GetTag.php";
+    final static private String URL = "http://115.145.170.186/GetTag.php";
     private Map<String, String> parameters;
 
     public GetTagRequest(String userID, Response.Listener<String> listener) {
