@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {                  //카메�
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent loginIntent = new Intent(MainActivity.this, PreViewActivity.class);
+                Intent loginIntent = new Intent(MainActivity.this, CameraActivity.class);
                 startActivity(loginIntent);
             }
         });
