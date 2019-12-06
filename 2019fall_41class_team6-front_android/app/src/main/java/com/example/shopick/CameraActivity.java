@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.shopick;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -168,7 +168,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             // Continue only if the File was successfully created
             if (photoFile != null) {
                 Uri photoURI = FileProvider.getUriForFile(this,
-                        "com.example.myapplication.fileprovider",
+                        "com.example.shopick.fileprovider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
