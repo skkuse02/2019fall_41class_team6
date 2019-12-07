@@ -43,8 +43,10 @@
         android:layout_marginLeft="10dp"/>
     
     <EditText
+        android:id="@+id/pw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:inputType="textPassword"
         app:layout_constraintStart_toEndOf="@+id/label"
         app:layout_constraintTop_toTopOf="@+id/label"
         app:layout_constraintBottom_toBottomOf="@+id/label"
@@ -63,6 +65,8 @@
         android:layout_marginLeft="10dp"/>
 
     <EditText
+        android:id="@+id/pwc"
+        android:inputType="textPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@+id/label2"
@@ -71,7 +75,7 @@
         android:ems="11"
         android:layout_marginLeft="15dp"
         />
-    
+
     <Button
         android:id="@+id/done"
         android:layout_width="match_parent"
