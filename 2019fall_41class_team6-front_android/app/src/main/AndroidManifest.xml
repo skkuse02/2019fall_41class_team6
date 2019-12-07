@@ -19,9 +19,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MypageActivity"></activity>
+        <activity android:name=".ChangePWActivity"></activity>
+        <activity android:name=".MypageActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".CameraActivity" />
+        <activity android:name=".RecommendActivity" />
         <activity android:name=".LoginActivity" />
         <activity
             android:name=".LoadingActivity"
@@ -34,27 +36,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
-
-        <activity
-            android:name="com.facebook.FacebookActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name" />
-        <activity
-            android:name="com.facebook.CustomTabActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="@string/fb_login_protocol_scheme" />
-            </intent-filter>
-        </activity>
+    <activity android:name=".SearchActivity"/>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.shopick.fileprovider"
@@ -62,7 +44,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
     </application>
 
