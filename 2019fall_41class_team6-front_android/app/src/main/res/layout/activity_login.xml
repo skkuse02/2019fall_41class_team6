@@ -23,7 +23,7 @@
         android:id="@+id/ID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="350dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="ID"
@@ -48,16 +48,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Log In"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+       app:layout_constraintBottom_toTopOf="@+id/view"
+        android:background="#fb696a"
+        android:textColor="#ffff"/>
 
-    <View style="@style/Divider"
-        android:layout_marginTop="10dp"
+    <View
+        android:id="@+id/view"
+        style="@style/Divider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Login"/>
+        app:layout_constraintBottom_toTopOf="@+id/Signup"
+        android:layout_marginBottom="20dp"
+        />
 
     <TextView
         android:id="@+id/Signup"
@@ -67,8 +72,9 @@
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Login"
-        android:clickable="true"/>
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="50dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
