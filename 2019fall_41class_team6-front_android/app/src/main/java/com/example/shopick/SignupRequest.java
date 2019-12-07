@@ -1,5 +1,7 @@
 package com.example.shopick;
 
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 
 import com.android.volley.Response;
@@ -20,6 +22,7 @@ public class SignupRequest extends StringRequest{
         parameters.put("pw", userPW);
         parameters.put("instaID", instaID);
         parameters.put("instaPW", instaPW);
+        Log.d("Request Check",instaID+instaPW);
     }
 
     @Override
