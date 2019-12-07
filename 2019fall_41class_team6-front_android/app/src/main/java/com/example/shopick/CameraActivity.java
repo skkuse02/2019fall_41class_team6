@@ -54,7 +54,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
         Button send = findViewById(R.id.send);
-        upLoadServerUri = "http://khsung0.dothome.co.kr/test/UploadToServer.php";//서버컴퓨터의 ip주소
+        upLoadServerUri = "http://khsung0.dothome.co.kr/test/UploadToServer.php";  //서버컴퓨터의 ip주소
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +103,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    // 버튼 onClick리스터 처리부분
+    // 버튼 onClick리스 처리부분
     @Override
     public void onClick(View v) {
         switch(v.getId()){
