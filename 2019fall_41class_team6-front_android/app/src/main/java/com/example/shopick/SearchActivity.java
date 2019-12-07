@@ -1,13 +1,16 @@
 package com.example.shopick;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Point;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -104,5 +107,43 @@ public class SearchActivity extends AppCompatActivity {
         GetImageRequest getImageRequest = new GetImageRequest(tag, responseListener2);
         RequestQueue queue2 = Volley.newRequestQueue(SearchActivity.this);
         queue2.add(getImageRequest);
+        gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            String storeUrl;
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                String clothe=searchContent.getText().toString().substring(1)+Integer.toString(position);
+                Log.d("보내지는 내용 확인",clothe);
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try{
+                            JSONObject jsonResponse = new JSONObject(response);
+                            Log.d("내용을 알아보자",jsonResponse.toString());
+                            boolean success = jsonResponse.getBoolean("success");
+                            if(success){
+                                storeUrl=jsonResponse.getString("URL");
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(storeUrl));
+                                startActivity(intent);
+                                Log.d("가게 URL 확인",storeUrl);
+                            }
+                            else
+                            {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(SearchActivity.this);
+                                AlertDialog dialog=builder.setMessage("URL 가져오기 실패").setPositiveButton("OK",null).create();
+                                dialog.show();
+                            }
+                        }
+                        catch(Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                GoToStoreRequest gotoStoreRequest = new GoToStoreRequest(clothe,responseListener);
+                RequestQueue queue3 = Volley.newRequestQueue(SearchActivity.this);
+                queue3.add(gotoStoreRequest);
+
+            }
+
+        });
     }
 }
