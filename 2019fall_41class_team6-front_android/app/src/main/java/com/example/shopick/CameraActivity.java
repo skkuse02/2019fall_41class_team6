@@ -9,6 +9,7 @@ import android.Manifest;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
@@ -24,6 +25,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 
 import java.io.DataOutputStream;
 import java.io.File;
@@ -70,6 +72,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                         uploadFile(mCurrentPhotoPath+"");
                     }
                 }).start();
+
                 Intent intent = new Intent(CameraActivity.this,MainActivity.class);
                 startActivity(intent);
             }
@@ -91,6 +94,8 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
             }
         }
+
+
     }
 
     // 권한 요청
@@ -176,9 +181,11 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
     private File createImageFile() throws IOException {
+        SharedPreferences prefs =getSharedPreferences("login", MODE_PRIVATE);
+        final String result = prefs.getString("login", "0");
         // Create an image file name
         String timeStamp = new SimpleDateFormat("MMdd_HHmmss").format(new Date());
-        String imageFileName = timeStamp + "_";
+        String imageFileName = result+"@"+timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
@@ -231,7 +238,8 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                 conn.setRequestProperty("Connection", "Keep-Alive");
                 conn.setRequestProperty("ENCTYPE", "multipart/form-data");
                 conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
-                conn.setRequestProperty("uploaded_file", fileName);
+
+                conn.setRequestProperty("uploaded_file",fileName);
                 dos = new DataOutputStream(conn.getOutputStream());
                 dos.writeBytes(twoHyphens + boundary + lineEnd);
                 dos.writeBytes("Content-Disposition: form-data; name=\"uploaded_file\";filename=\"" + fileName + "\"" + lineEnd);
@@ -285,6 +293,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             dialog.dismiss();
             return serverResponseCode;
         } // End else block
+
     }
 
 }
