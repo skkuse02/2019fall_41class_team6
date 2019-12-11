@@ -68,7 +68,11 @@ public class ChangePWActivity extends AppCompatActivity {
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
                             if(success){
-
+                                Intent result = new Intent();
+                                Toast.makeText(ChangePWActivity.this, "Success to change Password", Toast.LENGTH_SHORT).show();
+                                // 자신을 호출한 Activity로 데이터를 보낸다.
+                                setResult(RESULT_OK, result);
+                                finish();
                             }
                             else
                             {
