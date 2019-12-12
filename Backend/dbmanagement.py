@@ -4,7 +4,7 @@ class SQLController:
 	def __init__(self):
 		self.host='115.145.170.186'
 		self.port=7040
-		self.db = 'test'
+		self.db = 'shoppick'
 		self.user = 'admin'
 		self.password = '1234'
 	def search_shoppick_user(self, username, password):
@@ -47,7 +47,7 @@ class SQLController:
 				tag_num =4
 			#query = "UPDATE user_tag SET tag_num = %s  WHERE user_ID = %s"
 			query = "INSERT INTO user_tag (user_ID, tag_num, num) VALUES (%s,%s,%s)"
-			self.cursor.execute(query, (userID,int(tag_num),num ))
+			self.cursor.execute(query, (userID,tag,int(tag_num),num ))
 			#query2 = "UPDATE user_tag SET num = %s  WHERE user_ID = %s"
 			#self.cursor.execute(query2, (int(num), userID))
 			self.conn.commit()
