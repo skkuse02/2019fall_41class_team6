@@ -5,9 +5,12 @@ from keras.models import Sequential, load_model
 import tensorflow as tf
 import collections
 import os
+import dbmanagement
+import scrapping
 
 if __name__ == "__main__":
-
+	dbhandler = dbmanagement.SQLController()
+	scrapper = scrapping.scrapper()
 	config = tf.ConfigProto()
 	config.gpu_options.allow_growth = True
 	sess = tf.Session(config=config)
@@ -27,8 +30,13 @@ if __name__ == "__main__":
 		batch_size=1,
 		class_mode=None,
 		shuffle = False)
-
-	user_input_dir = './scraped/user_1'
+	uID=1
+	valid_user = dbhandler.search_shoppick_user(uID)
+	if not len(valid_user)>0:
+		quit()
+	instaID, instaPW, user_ID = dbhandler.get_instaData(uID)
+	scrapper.scrap(instaID,instaPW)
+	user_input_dir = './scraped/'+instaID
 	
 	input_img_list = os.listdir(user_input_dir)
 	nb_input_samples = len(input_img_list)
@@ -55,6 +63,12 @@ if __name__ == "__main__":
 	
 	for item in result:
 		print (item, result[item])
-
+	a,b = result.most_common(3)[0]
+	c,d = result.most_common(3)[1]
+	e,f = result.most_common(3)[2]
 	print(result.most_common(3))
+	
+	dbhandler.save_tags(user_ID, a, b)
+	dbhandler.save_tags(user_ID, c, d)
+	dbhandler.save_tags(user_ID, e, f)
 

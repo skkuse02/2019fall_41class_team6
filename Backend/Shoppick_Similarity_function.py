@@ -3,7 +3,9 @@ import numpy as np
 from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential, load_model
 import tensorflow as tf
+import dbmanagement
 
+dbhandler = dbmanagement.SQLController()
 config = tf.ConfigProto()
 
 config.gpu_options.allow_growth = True
@@ -137,5 +139,9 @@ if __name__ == "__main__":
     # print (sorted_similarities)
     num_reco=10
     num_data=feature_data.size
+    user_ID=1
     for i in range(num_reco):
-        print("Index : ", sorted_similarities[i][0])
+    	print("\nIndex : ", sorted_similarities[i][0])
+    	clothename, style, store_url, gotostore_url = dbhandler.get_clothes_info(sorted_similarities[i][0])
+    	print("Name: "+clothename+"\nStyle: "+style+"\nPic_Url: "+store_url+"\nURL: "+gotostore_url)
+    	dbhandler.save_index(user_ID, sorted_similarities[i][0],clothename, style, store_url, gotostore_url)
